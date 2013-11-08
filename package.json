@@ -6,7 +6,8 @@
     "consolidate": "~0.9.1",
     "swig": "~0.13.5",
     "socket.io": "~0.9.14",
-    "node-uuid": "~1.4.0"
+    "node-uuid": "~1.4.0",
+    "grunt-contrib-uglify": "~0.2.5"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

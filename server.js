@@ -4,7 +4,8 @@ var express = require('express'),
 	fs      = require('fs'),
 	uuid    = require('node-uuid');
 
-var env = "dev";
+// var env = "dev";
+var env = "prod";
 
 var app      = express(),
 	baseData = fs.readFileSync('./base-data.json').toString(),
@@ -31,15 +32,15 @@ app.use(express.methodOverride());
 app.use( express.static('./public') );
 
 // Routes
-app.get('/articles/all', function(req, res){
+app.get('/articles/', function(req, res){
 	res.send(data);
 });
 
 app.post('/articles', function (req, res){
 	req.body.id = uuid.v1();
 	req.body.votes = 0;
-	req.body.image = "/img/img3.jpg";
-	req.body.user  = "Siedrix";
+	// req.body.image = "/img/img3.jpg";
+	// req.body.user  = "Siedrix";
 
 	data.push(req.body);
 
@@ -50,13 +51,13 @@ app.post('/articles', function (req, res){
 	res.send(200, {status:"Ok", id: req.body.id});
 });
 
-app.put('/articles/:id', function (req, res){
+app.put('/articles/', function (req, res){
 	var article;
 
 	for (var i = data.length - 1; i >= 0; i--) {
 		article = data[i];
 
-		if(article.id === req.params.id){
+		if(article.id === req.body.id){
 			data[i] = req.body;
 		}
 	}

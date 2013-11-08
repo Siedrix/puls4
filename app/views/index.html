@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/puls4.css" />
 
+    {% if env === "dev" %}
     <script src="/js/vendor/jquery-2.0.3.js"></script>
     <script src="/js/vendor/underscore.js"></script>
     <script src="/js/vendor/backbone.js"></script>
@@ -21,7 +22,16 @@
     <script src="/js/vendor/PonyExpress.js"></script>    
 
     <script src="/js/init.js"></script>
+
+    <script src="/js/backbone/models/article.js"></script>
+    <script src="/js/backbone/collections/articles.js"></script>
+    <script src="/js/backbone/views/article-view.js"></script>
+    <script src="/js/backbone/views/app.js"></script>
+
+    <script src="/js/backbone/routers/base.js"></script>
+
     <script src="/js/main.js"></script>
+    {% endif %}
 </head>
 <body>
     <header>
@@ -62,187 +72,14 @@
             <li><a href="#">CSS3</a></li>
         </ul>
     </nav>
+    <form action="" style="display:none">
+        <p><label for="titulo">Título</label><input name="titulo" type="text"></p>
+        <p><label for="autor">Autor</label><input name="autor" type="text"></p>
+        <p><label for="tag">Tag</label><input name="tag" type="text"></p>
+        <input type="submit" value="Publicar">
+    </form>    
     <section class="posts">
-        <article class="post">
-            <div class="descripcion">
-                <figure class="imagen">
-                    <img src="/imagenes/foto.jpg" />
-                </figure>
-                <div class="detalles">
-                    <h2 class="titulo">
-                        Colores, gradientes y texto 3D con Sass y Compass
-                    </h2>
-                    <p class="autor">
-                        por <a href="#">Diana Reyes</a>
-                    </p>
-                    <a class="tag" href="#">CSS3</a>
-                    <p class="fecha">hace <strong>20</strong> min</p>
-                </div>
-            </div>
-            <div class="acciones">
-                <div class="votos">
-                    <a class="up" href="#"></a>
-                    <span class="total">156</span>
-                    <a class="down" href="#"></a>
-                </div>
-                <div class="datos">
-                    <a class="comentarios" href="#">
-                        10
-                    </a>
-                    <a class="estrellita" href="#"></a>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="descripcion">
-                <figure class="imagen">
-                    <img src="/imagenes/foto.jpg" />
-                </figure>
-                <div class="detalles">
-                    <h2 class="titulo">
-                        Colores, gradientes y texto 3D con Sass y Compass
-                    </h2>
-                    <p class="autor">
-                        por <a href="#">Diana Reyes</a>
-                    </p>
-                    <a class="tag" href="#">CSS3</a>
-                    <p class="fecha">hace <strong>20</strong> min</p>
-                </div>
-            </div>
-            <div class="acciones">
-                <div class="votos">
-                    <a class="up" href="#"></a>
-                    <span class="total">156</span>
-                    <a class="down" href="#"></a>
-                </div>
-                <div class="datos">
-                    <a class="comentarios" href="#">
-                        10
-                    </a>
-                    <a class="estrellita" href="#"></a>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="descripcion">
-                <figure class="imagen">
-                    <img src="/imagenes/foto.jpg" />
-                </figure>
-                <div class="detalles">
-                    <h2 class="titulo">
-                        Colores, gradientes y texto 3D con Sass y Compass
-                    </h2>
-                    <p class="autor">
-                        por <a href="#">Diana Reyes</a>
-                    </p>
-                    <a class="tag" href="#">CSS3</a>
-                    <p class="fecha">hace <strong>20</strong> min</p>
-                </div>
-            </div>
-            <div class="acciones">
-                <div class="votos">
-                    <a class="up" href="#"></a>
-                    <span class="total">156</span>
-                    <a class="down" href="#"></a>
-                </div>
-                <div class="datos">
-                    <a class="comentarios" href="#">
-                        10
-                    </a>
-                    <a class="estrellita" href="#"></a>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="descripcion">
-                <figure class="imagen">
-                    <img src="/imagenes/foto.jpg" />
-                </figure>
-                <div class="detalles">
-                    <h2 class="titulo">
-                        Colores, gradientes y texto 3D con Sass y Compass
-                    </h2>
-                    <p class="autor">
-                        por <a href="#">Diana Reyes</a>
-                    </p>
-                    <a class="tag" href="#">CSS3</a>
-                    <p class="fecha">hace <strong>20</strong> min</p>
-                </div>
-            </div>
-            <div class="acciones">
-                <div class="votos">
-                    <a class="up" href="#"></a>
-                    <span class="total">156</span>
-                    <a class="down" href="#"></a>
-                </div>
-                <div class="datos">
-                    <a class="comentarios" href="#">
-                        10
-                    </a>
-                    <a class="estrellita" href="#"></a>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="descripcion">
-                <figure class="imagen">
-                    <img src="/imagenes/foto.jpg" />
-                </figure>
-                <div class="detalles">
-                    <h2 class="titulo">
-                        Colores, gradientes y texto 3D con Sass y Compass
-                    </h2>
-                    <p class="autor">
-                        por <a href="#">Diana Reyes</a>
-                    </p>
-                    <a class="tag" href="#">CSS3</a>
-                    <p class="fecha">hace <strong>20</strong> min</p>
-                </div>
-            </div>
-            <div class="acciones">
-                <div class="votos">
-                    <a class="up" href="#"></a>
-                    <span class="total">156</span>
-                    <a class="down" href="#"></a>
-                </div>
-                <div class="datos">
-                    <a class="comentarios" href="#">
-                        10
-                    </a>
-                    <a class="estrellita" href="#"></a>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="descripcion">
-                <figure class="imagen">
-                    <img src="/imagenes/foto.jpg" />
-                </figure>
-                <div class="detalles">
-                    <h2 class="titulo">
-                        Colores, gradientes y texto 3D con Sass y Compass
-                    </h2>
-                    <p class="autor">
-                        por <a href="#">Diana Reyes</a>
-                    </p>
-                    <a class="tag" href="#">CSS3</a>
-                    <p class="fecha">hace <strong>20</strong> min</p>
-                </div>
-            </div>
-            <div class="acciones">
-                <div class="votos">
-                    <a class="up" href="#"></a>
-                    <span class="total">156</span>
-                    <a class="down" href="#"></a>
-                </div>
-                <div class="datos">
-                    <a class="comentarios" href="#">
-                        10
-                    </a>
-                    <a class="estrellita" href="#"></a>
-                </div>
-            </div>
-        </article>
+
     </section>
     <footer>
         <h3>
@@ -252,6 +89,72 @@
             </span>
         </h3>
     </footer>
+    {% raw %}
+    <script type="text/template" id="article-template">
+        <div class="descripcion">
+            <figure class="imagen">
+                <img src="{{ image }}" />
+            </figure>
+            <div class="detalles">
+                <h2 class="titulo">{{ title }}</h2>
+                <p class="autor">
+                    por <a href="#">{{ user }}</a>
+                </p>
+                <a class="tag" href="#">{{ tag }}</a>
+                <p class="fecha">hace <strong>20</strong> min</p>
+            </div>
+        </div>
+        <div class="acciones">
+            <div class="votos">
+                <a class="up" href="#"></a>
+                <span class="total">{{ votes }}</span>
+                <a class="down" href="#"></a>
+            </div>
+            <div class="datos">
+                <a class="comentarios" href="#">
+                    10
+                </a>
+                <a class="estrellita" href="#"></a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="article-extended-template">
+        <div class="descripcion extended">
+            <figure class="imagen">
+                <img src="{{ image }}" />
+            </figure>
+            <div class="detalles">
+                <h2 class="titulo">{{ title }}</h2>
+                <p class="autor">
+                    por <a href="#">{{ user }}</a>
+                </p>
+                <p>{{ content }}</p>
+                <a class="tag" href="#">{{ tag }}</a>
+                <p class="fecha">hace <strong>20</strong> min</p>
+            </div>
+        </div>
+        <div class="acciones">
+            <div class="votos">
+                <a class="up" href="#"></a>
+                <span class="total">{{ votes }}</span>
+                <a class="down" href="#"></a>
+            </div>
+            <div class="datos">
+                <a class="comentarios" href="#">
+                    10
+                </a>
+                <a class="estrellita" href="#"></a>
+            </div>
+        </div>
+    </script>    
+    {% endraw %}
+
+    {% if env === "prod" %}
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="/vendors.min.js"></script>
+    <script src="/app.min.js"></script>
+    {% endif %}
 </body>
 </html>
 
