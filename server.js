@@ -4,7 +4,7 @@ var express = require('express'),
 	fs      = require('fs'),
 	uuid    = require('node-uuid');
 
-var env = "dev";
+var env = "prod";
 
 var app      = express(),
 	baseData = fs.readFileSync('./base-data.json').toString(),
