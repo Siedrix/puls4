@@ -53,9 +53,9 @@ nav .menu li a:hover{background:rgba(0,0,0,0.1)}
 .posts .post .comentarios .comentario{border:2px solid rgba(34,188,224,0.5);border-radius:15px;margin:1em;padding:.5em 1.5em;}
 .posts .post .comentarios .comentario .datosComentario{border-bottom:1px solid #ccc;padding-bottom:1em;}
 .posts .post .comentarios .comentario .datosComentario .autorComentario{color:rgba(221,79,36,0.85)}
-.posts .post .comentarios .comentario .datosComentario .emailComentario{color:rgba(122,122,122,0.8)}
+.posts .post .comentarios .comentario .datosComentario .emailComentario{color:#0187b9}
 .posts .post .comentarios .comentario .datosComentario .guionComentario{color:#444}
-.posts .post .comentarios .comentario .contenidoComentario{color:rgba(1,135,185,0.7)}
+.posts .post .comentarios .comentario .contenidoComentario{color:#7a7a7a}
 #nuevaPublicacion{display:none;padding:.8em;margin-left:20px;}
 #nuevaPublicacion label{display:inline-block;width:60px}
 #nuevaPublicacion input[type=text]{padding:.1em 0;transition:padding .25s}

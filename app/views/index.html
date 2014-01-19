@@ -74,9 +74,19 @@
         </ul>
     </nav>
     <form action="" id="nuevaPublicacion">
-        <p><label for="titulo">Título</label><input name="titulo" type="text" required></p>
-        <p><label for="user">Autor</label><input name="user" type="text" required></p>
-        <p><label for="tag">Tag</label><input name="tag" type="text" required></p>
+        <p>
+            <label for="titulo">Titulo</label>
+            <input type="text" id="titulo" name="titulo" required>
+        </p>
+        <p>
+            <label for="autor">Autor</label>
+            <input type="text" id="autor" name="autor" required>
+        </p>
+        <p>
+            <label for="tag">Tag</label>
+            <input type="text" id="tag" name="tag" required>
+            <span class="anotacion"> *Separados por comas</span>
+        </p>
         <input type="submit" value="Publicar">
     </form>    
     <section class="posts">

@@ -74,12 +74,10 @@ Puls4.Views.Article = Backbone.View.extend({
 			"comentario":comentario
 		};	
 
-		console.log(data)
-
 		comentarios.push(data);
 
 		this.model.set('comments',comentarios);
-		console.log(this.model.toJSON());
+
 		var data=this.model.save();
 
 		this.extendedRender();
