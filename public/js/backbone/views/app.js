@@ -1,7 +1,7 @@
 Puls4.Views.App = Backbone.View.extend({
 	events:{
 		"click .publicar" : "showForm",
-		"submit form" : "createPost",
+		"submit #nuevaPublicacion" : "createPost",
 		"click .logo" : "navigateHome"
 	},
 	initialize : function ($el) {
@@ -10,29 +10,33 @@ Puls4.Views.App = Backbone.View.extend({
 	navigateHome : function(){
 		Backbone.history.navigate('/', {trigger:true});
 	},
-	showForm : function () {
-		this.$el.find('form').show();
+	showForm : function (e) {
+		e.preventDefault();
+		this.$el.find('#nuevaPublicacion').slideToggle();
+		$('input[name=titulo]').focus();
 	},
 	createPost : function (e) {
 		e.preventDefault();
 
 		var titulo = $('input[name=titulo]').val();
-		var autor = $('input[name=autor]').val();
+		var user = $('input[name=user]').val();
 		var tag = $('input[name=tag]').val();
+
 
 		var data = {
 			"title" : titulo,
-			"user" : autor,
+			"user" : user,
 			"image" : "/imagenes/img4.jpg",
-			"tag" : tag,
-			"votes" : 0
+			"tags" : tag,
+			"votes" : 0,
+			"comments":[]
 		};
-
+		
 		var model = new Puls4.Models.Article(data);
 
 		model.save();
 
-		this.$el.find('form input[type=text]').val('');
-		this.$el.find('form').slideUp();		
+		this.$el.find('#nuevaPublicacion input[type=text]').val('');
+		this.$el.find('#nuevaPublicacion').slideUp();		
 	}
 });

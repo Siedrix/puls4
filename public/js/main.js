@@ -21,8 +21,11 @@ $(document).ready(function(){
 		// Aqui agregaremos una vista para cada uno de nuesto articulos;
 		var view = new Puls4.Views.Article({model:model});
 
-		view.render();
-		$('.posts').prepend(view.$el.fadeIn());
+		if(window.app.state!='articleSingle'){
+			view.render();
+		}
+		
+		$('.posts').prepend(view.$el);
 	});
 
 	var xhr = window.collections.articles.fetch();

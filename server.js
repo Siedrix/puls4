@@ -4,8 +4,7 @@ var express = require('express'),
 	fs      = require('fs'),
 	uuid    = require('node-uuid');
 
-// var env = "dev";
-var env = "prod";
+var env = "dev";
 
 var app      = express(),
 	baseData = fs.readFileSync('./base-data.json').toString(),
@@ -41,6 +40,8 @@ app.post('/articles', function (req, res){
 	req.body.votes = 0;
 	// req.body.image = "/img/img3.jpg";
 	// req.body.user  = "Siedrix";
+	var tags=req.body.tags.toString();
+	req.body.tags=tags.split(",");
 
 	data.push(req.body);
 
