@@ -2,7 +2,8 @@ Puls4.Views.Article = Backbone.View.extend({
 	events:{
 		"click .acciones .votos .up" : "upvote",
 		"click .acciones .votos .down" : "downvote",
-		"click" : "navigate"
+		"click" : "navigate",
+		"submit #nuevoComentario":"nuevocomentario"
 	},
 	tagName:"article",
 	className:"post",
@@ -19,6 +20,7 @@ Puls4.Views.Article = Backbone.View.extend({
 
 		window.routers.base.on('route:root',function(){
 			self.$el.css('display', '');
+			self.$el.css('width','');
 			self.render();
 		});
 
@@ -26,6 +28,7 @@ Puls4.Views.Article = Backbone.View.extend({
 			if(window.app.article === self.model.get('id') ){
 				// Muestra version estendida
 				self.extendedRender();
+				self.$el.css('width','98%');
 			}else{
 				self.$el.hide();
 			}
@@ -52,9 +55,42 @@ Puls4.Views.Article = Backbone.View.extend({
 		e.stopPropagation();
 
 		var votes = parseInt( this.model.get('votes'), 10 );
+		if(votes>=1){
+			this.model.set('votes', --votes);
+			this.model.save();
+		}
+	},
+	nuevocomentario:function(e){
+		e.preventDefault();
 
-		this.model.set('votes', --votes);
-		this.model.save();
+		var comentarios=this.model.get('comments');
+
+		var autor = $('input[name=autor]').val();
+		var email = $('input[name=email]').val();
+		var comentario = $('textarea[name=comentario]').val();
+
+		var data = {
+			"autor" : autor,
+			"email" : email,
+			"comentario":comentario
+		};	
+
+		comentarios.push(data);
+
+		this.model.set('comments',comentarios);
+
+		var self=this;
+
+		var data=this.model.save();
+		data.done(function(data){
+			if(data.status==="Ok"){
+				self.extendedRender();
+			}
+		});
+
+		$('input[name=autor]').val("");
+		$('input[name=email]').val("");
+		$('textarea[name=comentario]').val("");
 	},
 	extendedRender : function() {
 		var data = this.model.toJSON();

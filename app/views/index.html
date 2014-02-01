@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" 
         content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="shortcut icon" href="/imagenes/logo.ico">
     <title>Puls4: Comunidad para gente atractiva y millonaria</title>
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/puls4.css" />
@@ -72,10 +73,20 @@
             <li><a href="#">CSS3</a></li>
         </ul>
     </nav>
-    <form action="" style="display:none">
-        <p><label for="titulo">Título</label><input name="titulo" type="text"></p>
-        <p><label for="autor">Autor</label><input name="autor" type="text"></p>
-        <p><label for="tag">Tag</label><input name="tag" type="text"></p>
+    <form action="" id="nuevaPublicacion">
+        <p>
+            <label for="titulo">Titulo</label>
+            <input type="text" id="titulo" name="titulo" required>
+        </p>
+        <p>
+            <label for="user">Autor</label>
+            <input type="text" id="autor" name="user" required>
+        </p>
+        <p>
+            <label for="tag">Tag</label>
+            <input type="text" id="tag" name="tag" required>
+            <span class="anotacion"> *Separados por comas</span>
+        </p>
         <input type="submit" value="Publicar">
     </form>    
     <section class="posts">
@@ -83,87 +94,101 @@
     </section>
     <footer>
         <h3>
-            <strong>Powered by Platzi</strong>
+            <strong>Powered by DevSolutions</strong>
             <span class="mejor">
-                mejorando.la 2013
+                DevSolutions 2013
             </span>
         </h3>
     </footer>
-    {% raw %}
+    {%raw%}
     <script type="text/template" id="article-template">
         <div class="descripcion">
             <figure class="imagen">
-                <img src="{{ image }}" />
+                <img src="{{image}}" />
             </figure>
             <div class="detalles">
-                <h2 class="titulo">{{ title }}</h2>
+                <h2 class="titulo">
+                   {{title}}
+                </h2>
                 <p class="autor">
-                    por <a href="#">{{ user }}</a>
+                    por <a href="#">{{user}}</a>
                 </p>
-                <a class="tag" href="#">{{ tag }}</a>
+                {% for tag in tags%}
+                    <a class="tag" href="#">{{tag}}</a>
+                {%endfor%}
                 <p class="fecha">hace <strong>20</strong> min</p>
             </div>
         </div>
         <div class="acciones">
             <div class="votos">
                 <a class="up" href="#"></a>
-                <span class="total">{{ votes }}</span>
+                <span class="total">{{votes}}</span>
                 <a class="down" href="#"></a>
             </div>
             <div class="datos">
-                <a class="comentarios" href="#">
-                    10
+                <a class="ncomentarios" href="#">
+                    {{comments.length()}}
                 </a>
                 <a class="estrellita" href="#"></a>
             </div>
         </div>
     </script>
-
-    <script type="text/template" id="article-extended-template">
+    <script type ="text/template" id="article-extended-template">
         <div class="descripcion extended">
             <figure class="imagen">
-                <img src="{{ image }}" />
+                <img src="{{image}}" />
             </figure>
             <div class="detalles">
-                <h2 class="titulo">{{ title }}</h2>
+                <h2 class="titulo">
+                   {{title}}
+                </h2>
                 <p class="autor">
-                    por <a href="#">{{ user }}</a>
+                    por <a href="#">{{user}}</a>
                 </p>
-                <p>{{ content }}</p>
-                <a class="tag" href="#">{{ tag }}</a>
+                <p>{% autoescape false %}
+                        {{content}}
+                    {% endautoescape %}
+                </p>
+                {% for tag in tags%}
+                    <a class="tag" href="#">{{tag}}</a>
+                {%endfor%}
                 <p class="fecha">hace <strong>20</strong> min</p>
             </div>
         </div>
         <div class="acciones">
             <div class="votos">
                 <a class="up" href="#"></a>
-                <span class="total">{{ votes }}</span>
+                <span class="total">{{votes}}</span>
                 <a class="down" href="#"></a>
             </div>
             <div class="datos">
-                <a class="comentarios" href="#">
-                    10
+                <a class="ncomentarios" href="#">
+                    {{comments.length()}}
                 </a>
                 <a class="estrellita" href="#"></a>
             </div>
         </div>
-    </script>    
-    {% endraw %}
 
+        <section class="comentarios">
+            <form action="" id="nuevoComentario">
+                <input type="text" name="autor" placeholder="Nombre" required />
+                <input type="email" name="email" placeholder="E-mail" required />
+                <textarea name="comentario" maxlength="140" placeholder="Ingresa un comentario" required></textarea>
+                <input type="submit" value="Comentar">
+            </form>
+            {% for comment in comments%}
+                <div class="comentario">
+                    <p class="datosComentario"><span class="autorComentario">{{comment.autor}}</span> <span class="guionComentario">-</span> <span class="emailComentario">{{comment.email}}</span></p>
+                    <p class="contenidoComentario">{{comment.comentario}}</p>
+                </div>
+            {%endfor%}
+        </section>
+    </script>
+    {%endraw%}
     {% if env === "prod" %}
     <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="/vendors.min.js"></script>
+    <script src ="/vendors.min.js"></script>
     <script src="/app.min.js"></script>
     {% endif %}
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

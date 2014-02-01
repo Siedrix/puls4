@@ -29,24 +29,43 @@ nav .menu li a:hover{background:rgba(0,0,0,0.1)}
 .posts .post{background:#fff;border-radius:0 0 .5em .5em;box-shadow:2px 2px 10px rgba(0,0,0,0.5);color:#7a7a7a;margin-bottom:.5em;}
 .posts .post .acciones{border-top:3px solid #22bce0;padding:.5em;overflow:hidden;}
 .posts .post .acciones .datos{float:right;}
-.posts .post .acciones .datos .comentarios{background:#444;border-radius:3px;color:#fff;margin:0 1em 0 0;padding:2px 5px;text-decoration:none}
+.posts .post .acciones .datos .ncomentarios{background:#444;border-radius:3px;color:#fff;margin:0 1em 0 0;padding:2px 10px;display:inline-block;text-align:center;position:relative;text-decoration:none;}
+.posts .post .acciones .datos .ncomentarios:after{border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #444;content:"";left:34%;position:absolute;top:100%}
 .posts .post .acciones .datos .estrellita{text-decoration:none;}
 .posts .post .acciones .datos .estrellita:after{color:#fcb92d;content:"\e601";font-family:"iconitos";font-size:1.1em}
 .posts .post .acciones .votos{float:left;}
-.posts .post .acciones .votos .down,.posts .post .acciones .votos .up{text-decoration:none;}
+.posts .post .acciones .votos .down,.posts .post .acciones .votos .up{position:relative;text-decoration:none;transition:.5s top;}
 .posts .post .acciones .votos .down:before,.posts .post .acciones .votos .up:before{font-family:"iconitos";font-size:1.5em;vertical-align:middle}
 .posts .post .acciones .votos .down{color:#f00;}
 .posts .post .acciones .votos .down:before{content:"\e602"}
+.posts .post .acciones .votos .down:hover{top:4px}
 .posts .post .acciones .votos .up{color:#008000;}
 .posts .post .acciones .votos .up:before{content:"\e603"}
-.posts .post .descripcion.extended .detalles{height:auto;padding-bottom:20px}
+.posts .post .acciones .votos .up:hover{top:-4px}
+.posts .post .descripcion.extended .detalles{height:auto;min-height:140px;padding:0 20px 20px 20px}
 .posts .post .descripcion .detalles{height:160px;margin-left:130px;}
 .posts .post .descripcion .detalles .autor{margin:.5em 0 2em 0}
 .posts .post .descripcion .detalles .fecha{float:right;margin:0 1em 0 0}
-.posts .post .descripcion .detalles .tag{background:#22bce0;border-radius:.5em;color:#fff;padding:.2em .5em;text-decoration:none}
+.posts .post .descripcion .detalles .tag{background:#22bce0;border-radius:.5em;display:inline-block;color:#fff;margin-bottom:.2em;padding:.2em .5em;text-decoration:none}
 .posts .post .descripcion .detalles .titulo{color:#444;font-size:18px;font-style:italic;margin:0;padding:.5em .5em 0 0}
 .posts .post .descripcion .imagen{float:left;}
 .posts .post .descripcion .imagen img{height:160px;vertical-align:top;width:120px}
+.posts .post .comentarios .comentario{border:2px solid rgba(34,188,224,0.5);border-radius:15px;margin:1em;padding:.5em 1.5em;}
+.posts .post .comentarios .comentario .datosComentario{border-bottom:1px solid #ccc;padding-bottom:1em;}
+.posts .post .comentarios .comentario .datosComentario .autorComentario{color:rgba(221,79,36,0.85)}
+.posts .post .comentarios .comentario .datosComentario .emailComentario{color:#0187b9}
+.posts .post .comentarios .comentario .datosComentario .guionComentario{color:#444}
+.posts .post .comentarios .comentario .contenidoComentario{color:#7a7a7a}
+#nuevaPublicacion{display:none;padding:.8em;margin-left:20px;}
+#nuevaPublicacion label{display:inline-block;width:60px}
+#nuevaPublicacion input[type=text]{padding:.1em 0;transition:padding .25s}
+#nuevaPublicacion input[type=text]:focus{border:1px solid #dd4f24;box-shadow:0 0 3px #aaa;padding-right:20px}
+#nuevaPublicacion input[type=submit]{border-radius:10%;box-shadow:1px 1px 2px rgba(0,0,0,0.5);color:#444;margin-left:60px;padding:.2em .5em}
+#nuevaPublicacion .anotacion{color:#dd4f24}
+#nuevoComentario{border-top:5px dashed #dd4f24;margin-top:2em;padding:.8em;padding-top:1em;}
+#nuevoComentario input[type=text],#nuevoComentario input[type=email],#nuevoComentario textarea{border-radius:5px;margin-right:15px;padding:.1em .5em;width:35%}
+#nuevoComentario input[type=submit]{border-radius:10%;box-shadow:1px 1px 2px rgba(0,0,0,0.5);color:#444;padding:.2em .5em;margin-top:1em}
+#nuevoComentario textarea{border:solid rgba(68,68,68,0.8) 1px;display:block;margin-top:1em;width:70%;max-width:70%}
 @media screen and (min-width: 768px){header .titular .publicar{font-size:1.1em;padding-left:3em;position:relative;}
 header .titular .publicar:before{left:0;font-size:2.5em;position:absolute;top:-10px}
 .posts .post{display:inline-block;width:48%;vertical-align:top;}
