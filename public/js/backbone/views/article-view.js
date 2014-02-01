@@ -55,9 +55,10 @@ Puls4.Views.Article = Backbone.View.extend({
 		e.stopPropagation();
 
 		var votes = parseInt( this.model.get('votes'), 10 );
-
-		this.model.set('votes', --votes);
-		this.model.save();
+		if(votes>=1){
+			this.model.set('votes', --votes);
+			this.model.save();
+		}
 	},
 	nuevocomentario:function(e){
 		e.preventDefault();
@@ -78,13 +79,18 @@ Puls4.Views.Article = Backbone.View.extend({
 
 		this.model.set('comments',comentarios);
 
+		var self=this;
+
 		var data=this.model.save();
+		data.done(function(data){
+			if(data.status==="Ok"){
+				self.extendedRender();
+			}
+		});
 
-		this.extendedRender();
-
-		var autor = $('input[name=autor]').val("");
-		var email = $('input[name=email]').val("");
-		var comentario = $('textarea[name=comentario]').val("");
+		$('input[name=autor]').val("");
+		$('input[name=email]').val("");
+		$('textarea[name=comentario]').val("");
 	},
 	extendedRender : function() {
 		var data = this.model.toJSON();
