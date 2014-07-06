@@ -22,7 +22,10 @@ $(document).ready(function(){
 		var view = new Puls4.Views.Article({model:model});
 
 		view.render();
-		$('.posts').prepend(view.$el.fadeIn());
+		view.$el.prependTo('.posts')
+			.css('opacity', '0.1')
+			.css('margin-top', '-150px')
+			.animate({'margin-top': "0", opacity: "1"}, 500);
 	});
 
 	var xhr = window.collections.articles.fetch();
