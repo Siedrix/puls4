@@ -62,6 +62,7 @@ Puls4.Views.Article = Backbone.View.extend({
 		var html = this.extendedTemplate(data);
 
 		this.$el.html( html );
+		this.$el.css('width', '100%');
 	},
 	render : function () {
 		var data = this.model.toJSON();

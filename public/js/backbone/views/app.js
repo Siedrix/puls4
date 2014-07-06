@@ -33,6 +33,10 @@ Puls4.Views.App = Backbone.View.extend({
 		model.save();
 
 		this.$el.find('form input[type=text]').val('');
-		this.$el.find('form').slideUp();		
+		this.$el.find('form').slideUp();
+		
+		if(window.app.state !== 'root'){
+			Backbone.history.navigate('/',{trigger:true});
+		}
 	}
 });
